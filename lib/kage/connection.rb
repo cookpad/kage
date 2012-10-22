@@ -49,7 +49,7 @@ module Kage
     end
 
     def connect_backends!(req, headers, backends)
-      @backends = select_backends(req, headers).select {|b| backends[b]}
+      @backends = select_backends(req, headers, backends).select {|b| backends[b]}
       @backends.unshift master_backend unless @backends.include? master_backend
       info "Backends for #{req[:method]} #{req[:url]} -> #{@backends}"
 
@@ -59,8 +59,8 @@ module Kage
       end
     end
 
-    def select_backends(request, headers)
-      callback(:on_select_backends, request, headers) { [master_backend] }
+    def select_backends(request, headers, backends)
+      callback(:on_select_backends, request, headers) { backends.keys }
     end
 
     def handle(server)
