@@ -1,6 +1,6 @@
 # Kage
 
-Kage is an HTTP shadow proxy server that sits between clients and your server(s) to enable "shadow requests".
+Kage (kah-geh) is an HTTP shadow proxy server that sits between clients and your server(s) to enable "shadow requests".
 
 Kage can be used to duplex requests to the master (production) server and shadow servers that have newer code changes that are going to be deployed. By shadowing requests to the new code you can make sure there are no big/surprising changes in the response in terms of data, performance and database loads etc.
 
