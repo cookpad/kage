@@ -72,7 +72,7 @@ To make `on_backend_finished` callback simpler, if the current request matches w
 ```ruby
 responses = {
   :original => {:data => "(RAW HTTP response)", :elapsed => 0.1234},
-  :sandbox  => {:data => "(RAW HTTP response)", :elspaed => 0.2333},
+  :sandbox  => {:data => "(RAW HTTP response)", :elapsed => 0.2333},
 }
 ```
 
