@@ -60,7 +60,8 @@ module Kage
     end
 
     def select_backends(request, headers, backends)
-      callback(:on_select_backends, request, headers) { backends.keys }
+      selected = callback(:on_select_backends, request, headers) { :all }
+      selected == :all ? backends.keys : selected
     end
 
     def handle(server)
