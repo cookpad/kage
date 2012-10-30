@@ -4,6 +4,8 @@ Kage (kah-geh) is an HTTP shadow proxy server that sits between clients and your
 
 Kage can be used to duplex requests to the master (production) server and shadow servers that have newer code changes that are going to be deployed. By shadowing requests to the new code you can make sure there are no big/surprising changes in the response in terms of data, performance and database loads etc.
 
+Kage is built with EventMachine and em-proxy and all shadow requests are done asynchronously, while responses from master are sent back to the client without blocking the network, so clients will never notice any delays even when shadow traffic is made.
+
 You can customize the behavior of Kage with simple callbacks, when it chooses which backends to send shadow requests to (or not at all), appends or deletes HTTP headers per backend, and examines the complete HTTP response (including headers and body).
 
 ## Features
