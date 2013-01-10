@@ -68,7 +68,7 @@ module Kage
       self.comm_inactivity_timeout = server.client_timeout
       self.master_backend = server.master
 
-      @session_id = "%016x" % Random.rand(2**64)
+      @session_id = "%016x" % rand(2**64)
       info "New connection"
 
       @callbacks = server.callbacks
