@@ -88,7 +88,7 @@ module Kage
       @parser.on_headers_complete = proc do |headers|
         @request = {
           :method => @parser.http_method,
-          :path => @parser.request_path,
+          :path => URI.parse(@parser.request_url).path,
           :url => @parser.request_url,
           :headers => headers
         }
