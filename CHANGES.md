@@ -1,3 +1,7 @@
+# 0.9.2 (2014-08-27)
+
+- Make it work with http_parser.rb >= 0.6.0 #5
+
 # 0.9.1 (2012-10-22)
 
 - Changed the default backend selection to all rather than just master
