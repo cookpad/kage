@@ -24,13 +24,19 @@ module Kage
     def on_munge_headers(&blk); @callbacks[:on_munge_headers] = blk; end
     def on_backends_finished(&blk); @callbacks[:on_backends_finished] = blk; end
 
-    def add_master_backend(name, host, port = 80)
+    def add_master_backend(name, host, port: 80, socket: nil)
       @master = name
-      add_backend(name, host, port)
+      add_backend(name, host, port: port, socket: socket)
     end
 
-    def add_backend(name, host, port = 80)
-      @backends[name] = {:host => host, :port => port}
+    def add_backend(name, host, port: 80, socket: nil)
+      opts = { :host => host }
+      if socket
+        opts[:socket] = socket
+      else
+        opts[:port] = port
+      end
+      @backends[name] = opts
     end
 
     def self.start(options = {}, &blk)
