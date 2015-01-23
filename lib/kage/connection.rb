@@ -1,4 +1,5 @@
 require 'http/parser'
+require 'uri'
 
 module Kage
   module Connection
