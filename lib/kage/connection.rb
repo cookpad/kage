@@ -56,7 +56,7 @@ module Kage
 
       @backends.each do |name|
         s = server name, backends[name]
-        s.comm_inactivity_timeout = 10
+        s.comm_inactivity_timeout = @backend_timeout
       end
     end
 
@@ -68,6 +68,8 @@ module Kage
     def handle(server)
       self.comm_inactivity_timeout = server.client_timeout
       self.master_backend = server.master
+
+      @backend_timeout = server.backend_timeout
 
       @session_id = "%016x" % rand(2**64)
       info "New connection"
