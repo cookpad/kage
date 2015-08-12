@@ -1,5 +1,6 @@
 require 'http/parser'
 require 'uri'
+require 'cgi/util'
 
 module Kage
   module Connection
@@ -86,10 +87,14 @@ module Kage
         @state = :request
       end
 
+
+      origin_url = @parser.request_url
+      is_escaped = CGI.unescape(origin_url) != origin_url
+      url = is_escaped ? origin_url : CGI.escape(origin_url)
       @parser.on_headers_complete = proc do |headers|
         @request = {
           :method => @parser.http_method,
-          :path => URI.parse(@parser.request_url).path,
+          :path => URI.parse(url).path,
           :url => @parser.request_url,
           :headers => headers
         }
